@@ -9,3 +9,10 @@ This is a fork of "hi-smart-vcard" suitable for public use. It is the basically 
 There is only one function added to this fork: Users can change the organization name and homepage.
 
 As the original, this application is distributed under the GNU Affero General Public License. Please fork it and create a branded version for your organisation or a costumers organisation.
+
+This repository includes files from third party projects:
+
+* Icons from https://github.com/google/material-design-icons optained via https://fonts.google.com/icons licensed under the Apache License Version 2.0.
+* A QR-Code library from https://github.com/datalog/qrcode-svg licenced under The MIT License (MIT).
+
+All those third party files retain their original license and are not licensed under the GNU Affero General Public License.
