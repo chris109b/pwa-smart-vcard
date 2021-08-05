@@ -1,0 +1,26 @@
+{
+    "short_name": "Visitenkarte",
+    "name": "Visitenkarte",
+    "description": "Geschäftliche und private Visitenkarte",
+	"version": "2.1",
+    "icons": [
+      {
+        "src": "./img/app-icon-192.png",
+        "type": "image/png",
+        "sizes": "192x192",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "./img/app-icon-512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any maskable"
+      }
+    ],
+    "lang": "de-DE",
+    "start_url": ".",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff"
+  }

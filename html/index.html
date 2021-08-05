@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>Visitenkarte</title>
+    <meta name="description" content="Visitenkarte für alle">
+    <meta name="author" content="Christian Beuschel <c.beuschel@humboldt-institut.org>">
+
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = no">
+	<meta name="theme-color" content="#1c4491">
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Visitenkarte">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" type="image/png" href="img/app-icon-192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="img/app-icon-512.png" sizes="512x512">
+	<link rel="icon" type="image/svg+xml" href="img/app-icon.svg" sizes="any">
+
+	<link rel="apple-touch-icon" href="img/app-icon-192.png" sizes="192x192">
+	<link rel="apple-touch-icon" href="img/app-icon-512.png" sizes="512x512">
+	<link rel="shortcut icon" href="img/app-icon-192.png" sizes="192x192">
+	
+	<link rel="manifest" href="manifest.json">
+	<link rel="stylesheet" href="css/index.css">
+
+	<script type="text/javascript" src="js/qrcode.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('sw.js').then(registration => {
+				console.log('Service Worker registrated.');
+			}).catch(error => {
+				console.log('Service Worker registration failed!');
+				console.log(error);
+			});
+		}
+	</script>
+</head>
+<body>
+<div class="window">
+<div class="page" id="office_page">
+	<div class="text_section" id="vcard_text_office">
+	</div>
+	<div class="qr_section">
+		<div class="qrcode_display" id="qrcode_office">
+		</div>
+	</div>
+</div>
+<div class="page" id="xmpp_office_page">
+	<div class="text_section" id="xmpp_text_office">
+	</div>
+	<div class="qr_section">
+		<div class="qrcode_display" id="xmpp_qrcode_office">
+		</div>
+	</div>
+</div>
+<div class="page" id="home_page">
+	<div class="text_section" id="vcard_text_home">
+	</div>
+	<div class="qr_section">
+		<div class="qrcode_display" id="qrcode_home">
+		</div>
+	</div>
+</div>
+<div class="settings_page" id="edit_page">
+	<div class="scroll">
+		<div class="scroll_content">
+			<form>
+				<h2 class="settings">Einstellungen</h2>
+				<p class="settings">
+					Hier kannst du die Inhalte deiner geschäftlichen und deiner privaten Visitenkarte anpassen.
+				</p>
+				<h2 class="settings">Geschäftlich</h2>
+				<p class="settings">
+					<label class="settings">Organisation</label>
+					<input class="settings" id="office_org_input" type="text" name="office_org" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Vorname</label>
+					<input class="settings" id="office_fn_input" type="text" name="office_fn" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Nachname</label>
+					<input class="settings" id="office_ln_input" type="text" name="office_ln" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Position / Rolle</label>
+					<input class="settings" id="office_role_input" type="text" name="office_role" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Straße, Hausnummer</label>
+					<input class="settings" id="office_addr_input" type="text" name="office_addr" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Postleitzahl</label>
+					<input class="settings" id="office_zip_input" type="text" name="office_zip" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Ort</label>
+					<input class="settings" id="office_city_input" type="text" name="office_city" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Telefon</label>
+					<input class="settings" id="office_tel0_input" type="text" name="office_tel0" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">E-Mail</label>
+					<input class="settings" id="office_email_input" type="text" name="office_email" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">XMPP/Jabber-Id</label>
+					<input class="settings" id="xmpp_office_input" type="text" name="xmpp_office" value="">
+				</p>
+				
+				<h2 class="settings">Privat</h2>
+				<p class="settings">
+					<label class="settings">Vorname</label>
+					<input class="settings" id="home_fn_input" type="text" name="home_fn" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Nachname</label>
+					<input class="settings" id="home_ln_input" type="text" name="home_ln" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Straße, Hausnummer</label>
+					<input class="settings" id="home_addr_input" type="text" name="home_addr" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Postleitzahl</label>
+					<input class="settings" id="home_zip_input" type="text" name="home_zip" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Ort</label>
+					<input class="settings" id="home_city_input" type="text" name="home_city" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Telefon</label>
+					<input class="settings" id="home_tel0_input" type="text" name="home_tel0" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Mobiltelefon</label>
+					<input class="settings" id="home_tel1_input" type="text" name="home_tel1" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">E-Mail</label>
+					<input class="settings" id="home_email_input" type="text" name="home_email" value="">
+				</p>
+				<p class="settings">
+					<label class="settings">Homepage / Profilseite</label>
+					<input class="settings" id="home_web_input" type="text" name="home_web" value="">
+				</p>
+				<h2 class="settings">Informationen</h2>
+				<p class="settings">
+					Diese Applikation steht kostenlos zur Verfügung. Die Applikation dient dazu eine geschäftliche und eine private Visitenkarte auf dem Smartphone anzuzeigen.
+				</p>
+				<p class="settings">
+					Alle eingegeben Daten werden offline auf dem Gerät und in dem Webbrowser gespeichert, in dem sie eingegeben wurden.
+				</p>
+				<p class="settings">
+					Die Informationen der gespeicherten Visitenkarten werden im V-Card-Format kodiert und als QR-Code angezeigt. Dieser kann von einer entsprechenden App wie z.B. der <a href="https://support.apple.com/de-de/HT208843" target="_blank" rel="noopener noreferrer">"Kamera"-App</a> auf dem iPhone oder der <a href="https://play.google.com/store/apps/details?id=de.markusfisch.android.binaryeye" target="_blank" rel="noopener noreferrer">"Binary Eye"-App von "Markus Fisch"</a> auf einem Android-Smartphone gelesen werden. Die Informationen werden dabei als Eintrag für das Adressbuch erkannt und können direkt in selbiges übernommen werden.
+				</p>
+				<p class="settings">
+					Die Daten werden auch in Textform angezeigt. Sollte also jemand nicht in der Lage sein, einen QR-Code zu scannen, können die Daten manuell übertragen werden.
+				</p>
+				<p class="settings">
+					Felder, die in den Einstellungen leer gelassen werden, werden ignoriert. Möchte man also z.B. seine private Adresse nicht auf der privaten Visitenkarte haben, lässt man "Straße, Hausnummer", "Postleitzahl" und "Ort" einfach leer. Gleiches gilt für Telefonnummern und alle anderen Felder.
+				</p>
+				<p class="settings">
+					Als private Homepage lässt sich auch ein Link auf das eigene Soziale Netzwerk Profil verwenden. Das funktioniert z.B. mit einem <a href="https://de-de.facebook.com/help/2053403608222571" target="_blank" rel="noopener noreferrer">Facebook</a>-Profil.
+				</p>
+				<h2 class="settings">Installation</h2>
+				<p class="settings">
+					Diese Anwendung ist eine sogenannte "Progressive Web App". Sie kann wie eine reguläre App aus dem App-Store benutzt werden.
+				</p>
+				<p class="settings">
+					Für die Installation auf <b>iOS-Geräten</b> (iPhone, iPad und iPod Touch) öffnet man diese Anwendung als Web-Seite in Safari.	
+					<ul class="settings">
+						<li>Dort tippt man auf das "Teilen"-Symbol (mittig, unten).</li>
+						<li>In der Teilen-Funktion wählt man "Zum Home-Bildschirm".</li>
+						<li>Im nachfolgenden Bestätigungsdialog ließe sich der Name ändern und man wählt "Hinzufügen" (rechts, oben).</li>
+						<li>Die Installation ist damit abgeschlossen.</li>
+					</ul>
+				</p>
+				<p class="settings">
+					Auf einem <b>Android-Gerät</b> mit Chrome-Browser öffnet man die Anwendung als Web-Seite in Chrome. 
+					<ul class="settings">
+						<li>Dort öffnet man das Menü (recht, oben, drei Punkte untereinander).</li>
+						<li>Im Menü wählt man die Option "Zum Startbildschirm hinzufügen".</li>
+						<li>Im nachfolgenden Bestätigungsdialog tippt man auf "Hinzufügen". </li>
+						<li>Die Installation ist damit abgeschlossen.</li>
+					</ul>
+				</p>
+				<p class="settings">
+					Die Installation funktioiert auf anderen Geräten ähnlich.
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="menu"><img alt="Büro" class="menu" id="office_btn" src="img/office.svg"><img alt="chat" class="menu" id="xmpp_office_btn" src="img/chat.svg"><img alt="Privat" class="menu" id="home_btn" src="img/home.svg"><img alt="Einstellungen" class="menu" id="edit_btn" src="img/edit.svg"></div>
+</div>
+<script>
+    var app = new Application();
+    app.run();
+</script>
+</body>
+</html>

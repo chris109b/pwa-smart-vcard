@@ -1,0 +1,303 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  src: local('Open Sans Regular'), url(OpenSans-Regular.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans Bold';
+  font-style: bold;
+  src: local('Open Sans Bold'), url(OpenSans-Bold.ttf);
+  font-display: swap;
+}
+
+html, body {
+	width: 100vw;
+	height: 100vh;
+	padding: 0px;
+	margin: 0px;
+}
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 11pt;
+}
+div {
+	float: left;
+	position: relative;
+}
+b {
+	font-weight: normal;
+	font-family: 'Open Sans Bold';
+}
+div.window {
+	width: 100%;
+    height: 100%;
+}
+
+div.page,
+div.settings_page {
+	position: absolute;
+	width: 100%;
+    height: 100%;
+	overflow: hidden;
+	background-color: white;
+	opacity: 1.0;
+	transition: opacity 0.5s;
+}
+div.page {
+    display: grid;
+    gap: 0px 0px;
+}
+div.invisible_page {
+	opacity: 0.0;
+}
+div.hidden_page {
+	display: none;
+}
+
+h2.settings {
+	padding: 10px 0px 10px 0px;
+	margin: 0px;
+	font-family: 'Open Sans Bold';
+	font-weight: normal;
+	font-size: 141%;
+}
+p.settings {
+	padding: 0px 0px 10px 0px;
+}
+label.settings {
+	display: inline-block;
+	width: 180px;
+}
+input.settings {
+	display: inline-block;
+	width: 220px;
+}
+
+div.qr_section {
+	background-color: white;
+}
+div.text_section {
+	background-color:white;
+}
+p.org {
+	padding: 20px 0px 2px 0px;
+	margin: 0;
+	font-size: 141%;
+	border-bottom: 1px solid black;
+}
+p.fn {
+	padding: 8px 0px 2pt 0px;
+	margin: 0;
+	font-family: 'Open Sans Bold';
+	color: navy;
+}
+p.role {
+	padding: 0px 0px 10px 0px;
+	margin: 0;
+}
+p.address {
+	padding: 0px 0px 2px 0px;
+	margin: 0;
+	color: #999;
+}
+p.tel0 {
+	padding: 13px 0px 2px 0px;
+	margin: 0;
+}
+p.tel1 {
+	padding: 0px 0px 2px 0px;
+	margin: 0;
+}
+p.email {
+	padding: 13px 0px 2px 0px;
+	margin: 0;
+}
+p.web {
+	padding: 0px 0px 10px 0px;
+	margin: 0;
+}
+
+p.fn_priv {
+	padding: 20px 0px 12px 0px;
+	margin: 0;
+	font-size: 141%;
+	color: navy;
+}
+
+div.qrcode_display {
+	width: 90%;
+	height: 90%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+div.menu {
+	position: fixed;
+	display: grid;
+	height: 200px;
+	width: 48px;
+	grid-template-columns: 100%;
+    grid-template-rows: 48px 48px 48px;
+	overflow: hidden;
+	box-shadow: 1px 1px 6px gray;
+}
+
+img.menu {
+	width: 24px;
+	height: 24px;
+	padding: 12px;
+	margin: 0px;
+	border: 0px;
+	background-color: white;
+	cursor: pointer;
+}
+img.selected_btn {
+	background-color: #808080;
+	filter: invert(100%);
+}
+img.disabled_btn {
+	opacity: 0.2;
+	cursor: not-allowed;
+}
+#edit_btn {
+	margin-top: 8px;
+}
+
+
+img.text {
+	width: 13pt;
+	height: 13pt;
+	vertical-align: middle;
+	position: relative;
+	top: -1px;
+}
+
+div#xmpp_text_office {
+
+}
+
+div.xmpp_frame {
+	position:absolute;
+	left: 0;
+	width: 100%;
+	top: 50%;
+	transform: translate(0, -50%);
+	text-align: center;
+}
+
+img.xmpp_logo {
+	width: 32%;
+	height: auto;
+}
+
+
+div.scroll {
+	width: 100%;
+	height: 100%;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+div.scroll_content {
+	width: 100%;
+	min-height: 100%;
+	padding-bottom: 40px;
+}
+
+span.red {
+	color: red;
+}
+
+@media (orientation: landscape) {
+	div.page {
+		grid-template-columns: 50% 50%;
+		grid-template-rows: 100%;
+	}
+	div.menu {
+		top: 20px;
+		left: 0;
+		border-radius: 0px 10px 10px 0px;
+	}
+	div.text_section {
+		padding-left: 84px;
+	}
+	h2.settings,
+	p.settings {
+		padding-left: 84px;
+		padding-right: 20px;
+	}
+	ul.settings {
+		margin-left: 84px;
+		margin-right: 20px;
+	}
+}
+
+@media (orientation: portrait) {
+	div.page {
+		grid-template-columns: 100%;
+		grid-template-rows: 50% 50%;
+	}
+	div.menu {
+		top: 20px;
+		right: 0;
+		border-radius: 10px 0px 0px 10px;
+	}
+	div.text_section {
+		padding-left: 20px;
+		padding-right: 84px;
+	}
+	h2.settings,
+	p.settings {
+		padding-right: 84px;
+		padding-left: 20px;
+	}
+	ul.settings {
+		margin-right: 84px;
+		margin-left: 20px;
+	}
+}
+
+@media (min-height: 840px) or (min-width: 840px) {
+	div.page {
+		font-size: 16pt;
+	}
+	p.org {
+		border-bottom: 2px solid gray;
+	}
+	input.settings {
+		width: 360px;
+	}
+	img.text {
+		width: 16pt;
+		height: 16pt;
+		top: -1px;
+	}
+}
+
+@media (min-height: 1200px) or (min-width: 1200px) {
+	div.page {
+		font-size: 22pt;
+	}
+	div.settings_page {
+		font-size: 16pt;
+	}
+	input.settings {
+		font-size: 100%;
+	}
+	label.settings {
+		width: 360px;
+	}
+	input.settings {
+		width: 480px;
+	}
+	p.org {
+		border-bottom: 3px solid gray;
+	}
+	img.text {
+		width: 22pt;
+		height: 22pt;
+		top: -1px;
+	}
+}
