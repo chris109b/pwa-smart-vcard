@@ -2,7 +2,9 @@ self.addEventListener('install', e => {
     e.waitUntil(
         caches.open('static').then(cache => {
             return cache.addAll([
+                "./",
                 "./favicon.ico",
+                "./index.html",
                 "./css/index.css",
                 "./css/OpenSans-Bold.ttf",
                 "./css/OpenSans-Regular.ttf",
