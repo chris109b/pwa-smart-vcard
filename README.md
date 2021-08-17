@@ -16,3 +16,11 @@ This repository includes files from third party projects:
 * A QR-Code library from https://github.com/datalog/qrcode-svg licenced under The MIT License (MIT).
 
 All those third party files retain their original license and are not licensed under the GNU Affero General Public License.
+
+## Demo
+
+To see this application in action go to: https://vcard.pixelpaper.org
+
+## Installation
+
+If you have a webspace with SSL/TLS encryption enabled, simply upload the content of the folder "html" to your webspace. Then open the HTTPS-URI of your webspace in your browser.
