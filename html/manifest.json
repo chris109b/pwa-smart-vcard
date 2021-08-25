@@ -2,7 +2,7 @@
     "short_name": "Visitenkarte",
     "name": "Visitenkarte",
     "description": "Geschäftliche und private Visitenkarte",
-	"version": "2.2",
+	"version": "2.4",
     "icons": [
       {
         "src": "./img/app-icon-192.png",

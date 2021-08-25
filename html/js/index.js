@@ -466,6 +466,9 @@ function Application() {
 		e = document.getElementById('office_email_input');
 		e.value = app.data['office_email'].trim();
 		e.onchange = app.change_office_input;
+		e = document.getElementById('office_web_input');
+		e.value = app.data['office_web'].trim();
+		e.onchange = app.change_office_input;
 		
 		e = document.getElementById('xmpp_office_input');
 		e.value = app.data['xmpp_office'].trim();
