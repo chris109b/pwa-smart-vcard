@@ -84,13 +84,13 @@ p.org {
 	padding: 20px 0px 2px 0px;
 	margin: 0;
 	font-size: 141%;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #008080;
 }
 p.fn {
 	padding: 8px 0px 2pt 0px;
 	margin: 0;
 	font-family: 'Open Sans Bold';
-	color: navy;
+	color: #008080;
 }
 p.role {
 	padding: 0px 0px 10px 0px;
@@ -99,7 +99,7 @@ p.role {
 p.address {
 	padding: 0px 0px 2px 0px;
 	margin: 0;
-	color: #999;
+	color: #808080;
 }
 p.tel0 {
 	padding: 13px 0px 2px 0px;
@@ -122,7 +122,7 @@ p.fn_priv {
 	padding: 20px 0px 12px 0px;
 	margin: 0;
 	font-size: 141%;
-	color: navy;
+	color: #008080;
 }
 
 div.qrcode_display {
@@ -142,7 +142,7 @@ div.menu {
 	grid-template-columns: 100%;
     grid-template-rows: 48px 48px 48px;
 	overflow: hidden;
-	box-shadow: 1px 1px 6px gray;
+	box-shadow: 1px 1px 6px #808080;
 }
 
 img.menu {
@@ -155,7 +155,7 @@ img.menu {
 	cursor: pointer;
 }
 img.selected_btn {
-	background-color: #808080;
+	background-color: #FF7F7F;
 	filter: invert(100%);
 }
 img.disabled_btn {
@@ -264,7 +264,7 @@ span.red {
 		font-size: 16pt;
 	}
 	p.org {
-		border-bottom: 2px solid gray;
+		border-bottom: 2px solid #008080;
 	}
 	input.settings {
 		width: 360px;
@@ -293,7 +293,7 @@ span.red {
 		width: 480px;
 	}
 	p.org {
-		border-bottom: 3px solid gray;
+		border-bottom: 3px solid #008080;
 	}
 	img.text {
 		width: 22pt;
