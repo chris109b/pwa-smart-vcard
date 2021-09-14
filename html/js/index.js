@@ -211,7 +211,6 @@ function Application() {
 		console.log(app.office_vcard);
 		qrcode = new QRCode({ msg: app.office_vcard , ecl: 'L'});
 		qrcode_display = document.getElementById('qrcode_office');
-		qrcode_display = document.getElementById('qrcode_home');
 		qrcode_display.innerHTML = '';
 		qrcode_display.appendChild(qrcode);
 		qrcode.setAttribute("width", "100%");
