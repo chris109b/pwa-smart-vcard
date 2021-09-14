@@ -210,13 +210,17 @@ function Application() {
 		app.office_vcard += "END:VCARD";
 		console.log(app.office_vcard);
 		qrcode = new QRCode({ msg: app.office_vcard , ecl: 'L'});
-		document.getElementById('qrcode_office').appendChild(qrcode);
+		qrcode_display = document.getElementById('qrcode_office');
+		qrcode_display = document.getElementById('qrcode_home');
+		qrcode_display.innerHTML = '';
+		qrcode_display.appendChild(qrcode);
 		qrcode.setAttribute("width", "100%");
 		qrcode.setAttribute("height", "100%");
 	};
 	
 	this.update_xmpp_office_page = function() {
 		app = this;
+
 		app.xmpp_link_office = '';
 		display = document.getElementById('xmpp_text_office');
 		display.innerHTML = '';
@@ -242,7 +246,9 @@ function Application() {
 		}
 		console.log(app.xmpp_link_office);
 		qrcode = new QRCode({ msg: app.xmpp_link_office , ecl: 'L'});
-		document.getElementById('xmpp_qrcode_office').appendChild(qrcode);
+		qrcode_display = document.getElementById('xmpp_qrcode_office');
+		qrcode_display.innerHTML = '';
+		qrcode_display.appendChild(qrcode);
 		qrcode.setAttribute("width", "100%");
 		qrcode.setAttribute("height", "100%");
 	};
@@ -342,7 +348,9 @@ function Application() {
 		app.home_vcard += "END:VCARD";
 		console.log(app.home_vcard);
 		qrcode = new QRCode({ msg: app.home_vcard , ecl: 'L'});
-		document.getElementById('qrcode_home').appendChild(qrcode);
+		qrcode_display = document.getElementById('qrcode_home');
+		qrcode_display.innerHTML = '';
+		qrcode_display.appendChild(qrcode);
 		qrcode.setAttribute("width", "100%");
 		qrcode.setAttribute("height", "100%");
 	};
