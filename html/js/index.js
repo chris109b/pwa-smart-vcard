@@ -82,7 +82,7 @@ function Application() {
 	
 	this.data = {};
 	this.office_vcard = '';
-	this.xmpp_link_office = '';
+	this.messenger_link_office = '';
 	this.home_vcard = '';
 	this.blob_to_share = null;
 
@@ -217,39 +217,48 @@ function Application() {
 		qrcode.setAttribute("height", "100%");
 	};
 	
-	this.update_xmpp_office_page = function() {
+	this.update_messenger_office_page = function() {
 		app = this;
 
-		app.xmpp_link_office = '';
-		display = document.getElementById('xmpp_text_office');
+		app.messenger_link_office = '';
+		display = document.getElementById('messenger_text_office');
 		display.innerHTML = '';
 		
-		xmpp_frame = document.createElement('div');
-		xmpp_frame.className = 'xmpp_frame';
-		display.appendChild(xmpp_frame);
-		
-		xmpp_icon = document.createElement('img');
-		xmpp_icon.className = 'xmpp_logo';
-		xmpp_icon.src = 'img/xmpp-chat.svg';
-		xmpp_frame.appendChild(xmpp_icon);
-		
-		xmpp_office = app.data['xmpp_office'].trim();
-		if (xmpp_office.length > 0) {
-			xmpp_id_p = document.createElement('p');
-			xmpp_id_p.className = 'xmpp_id';
-			xmpp_escaped_text = xmpp_office.escapedHtml();
-			xmpp_id_p.innerHTML = xmpp_escaped_text.replace('@chat.humboldt-institut.org', '@chat<span class="red">.</span>humboldt-institut.org');
-			xmpp_frame.appendChild(xmpp_id_p);
+		messenger_frame = document.createElement('div');
+		messenger_frame.className = 'messenger_frame';
+		display.appendChild(messenger_frame);
 
-			app.xmpp_link_office = 'xmpp:' + xmpp_office;
+		messenger_office = app.data['messenger_office'].trim();
+		if (messenger_office.length > 0) {
+		    if (messenger_office.substr(0,1) == '@') {
+		        messenger_icon_src = 'img/matrix-chat.svg';
+		        app.messenger_link_office = 'https://matrix.to/#/:' + messenger_office;
+		    }
+		    else {
+		        messenger_icon_src = 'img/xmpp-chat.svg';
+		        app.messenger_link_office = 'xmpp:' + messenger_office;
+		    }
+		
+		    messenger_icon = document.createElement('img');
+		    messenger_icon.className = 'messenger_logo';
+	        messenger_icon.src = messenger_icon_src;
+		    messenger_frame.appendChild(messenger_icon);
+		
+			messenger_id_p = document.createElement('p');
+			messenger_id_p.className = 'messenger_id';
+			messenger_escaped_text = messenger_office.escapedHtml();
+			messenger_escaped_text = messenger_escaped_text.replace(':matrix.humboldt-institut.org', ':matrix<span class="red">.</span>humboldt-institut.org');
+			messenger_id_p.innerHTML = messenger_escaped_text.replace('@chat.humboldt-institut.org', '@chat<span class="red">.</span>humboldt-institut.org');
+			messenger_frame.appendChild(messenger_id_p);
+		
+			console.log(app.messenger_link_office);
+		    qrcode = new QRCode({ msg: app.messenger_link_office , ecl: 'L'});
+		    qrcode_display = document.getElementById('messenger_qrcode_office');
+		    qrcode_display.innerHTML = '';
+		    qrcode_display.appendChild(qrcode);
+		    qrcode.setAttribute("width", "100%");
+		    qrcode.setAttribute("height", "100%");
 		}
-		console.log(app.xmpp_link_office);
-		qrcode = new QRCode({ msg: app.xmpp_link_office , ecl: 'L'});
-		qrcode_display = document.getElementById('xmpp_qrcode_office');
-		qrcode_display.innerHTML = '';
-		qrcode_display.appendChild(qrcode);
-		qrcode.setAttribute("width", "100%");
-		qrcode.setAttribute("height", "100%");
 	};
 
 	this.update_home_page = function() {
@@ -364,8 +373,8 @@ function Application() {
 		action = new UIAction(app, app.switch_pages, data = {'btn_id': 'home_btn', 'page_id':'home_page'});
 		app.ui_action_stack.push(action);
 	};
-	this.click_xmpp_office_btn = function(e) {
-		action = new UIAction(app, app.switch_pages, data = {'btn_id': 'xmpp_office_btn', 'page_id':'xmpp_office_page'});
+	this.click_messenger_office_btn = function(e) {
+		action = new UIAction(app, app.switch_pages, data = {'btn_id': 'messenger_office_btn', 'page_id':'messenger_office_page'});
 		app.ui_action_stack.push(action);
 	};
 	this.click_share_btn = function(e) {
@@ -393,10 +402,10 @@ function Application() {
 		app.update_office_page();
 	};
 	
-	this.change_xmpp_office_input = function(e) {
+	this.change_messenger_office_input = function(e) {
 		app.data[e.target.name] = e.target.value;
 		window.localStorage.setItem(e.target.name, e.target.value);
-		app.update_xmpp_office_page();
+		app.update_messenger_office_page();
 	};
 	
 	this.change_home_input = function(e) {
@@ -432,8 +441,7 @@ function Application() {
 		app.data['office_web'] =  (storage.office_web) ? storage.office_web : 'www.musterfirma.de';
 		app.update_office_page();
 		
-		app.data['xmpp_office'] =  (storage.xmpp_office) ? storage.xmpp_office : 'freie-messenger@conference.jabber.de?join';
-		app.update_xmpp_office_page();
+		app.data['messenger_office'] =  (storage.messenger_office) ? storage.messenger_office : 'freie-messenger@conference.jabber.de?join';
 		
 		app.data['home_fn'] = (storage.home_fn) ? storage.home_fn : 'Max';
 		app.data['home_ln'] = (storage.home_ln) ? storage.home_ln : 'Mustermann';
@@ -477,9 +485,9 @@ function Application() {
 		e.value = app.data['office_web'].trim();
 		e.onchange = app.change_office_input;
 		
-		e = document.getElementById('xmpp_office_input');
-		e.value = app.data['xmpp_office'].trim();
-		e.onchange = app.change_xmpp_office_input;
+		e = document.getElementById('messenger_office_input');
+		e.value = app.data['messenger_office'].trim();
+		e.onchange = app.change_messenger_office_input;
 		
 		e = document.getElementById('home_fn_input');
 		e.value = app.data['home_fn'].trim();
@@ -516,11 +524,11 @@ function Application() {
 		office_btn.classList.add('selected_btn');
 		app.ui_active_btn = office_btn;
 		
-		xmpp_office_page = document.getElementById('xmpp_office_page');
-		xmpp_office_page.classList.add('invisible_page');
-		xmpp_office_page.classList.add('hidden_page');
-		xmpp_office_btn = document.getElementById('xmpp_office_btn');
-		xmpp_office_btn.onclick = app.click_xmpp_office_btn;
+		messenger_office_page = document.getElementById('messenger_office_page');
+		messenger_office_page.classList.add('invisible_page');
+		messenger_office_page.classList.add('hidden_page');
+		messenger_office_btn = document.getElementById('messenger_office_btn');
+		messenger_office_btn.onclick = app.click_messenger_office_btn;
 		
 		home_page = document.getElementById('home_page');
 		home_page.classList.add('invisible_page');

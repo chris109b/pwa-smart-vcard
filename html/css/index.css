@@ -175,11 +175,11 @@ img.text {
 	top: -1px;
 }
 
-div#xmpp_text_office {
+div#messenger_text_office {
 
 }
 
-div.xmpp_frame {
+div.messenger_frame {
 	position:absolute;
 	left: 0;
 	width: 100%;
@@ -188,7 +188,7 @@ div.xmpp_frame {
 	text-align: center;
 }
 
-img.xmpp_logo {
+img.messenger_logo {
 	width: 32%;
 	height: auto;
 }
